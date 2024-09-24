@@ -1,0 +1,8 @@
+default:
+  target: dev
+  outputs:
+    dev:
+      type: sqlite
+      threads: 1
+      database: 'data/database.db'  # Path to the SQLite database
+      schema: main  # No schemas in SQLite, use "main"
