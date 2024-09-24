@@ -14,7 +14,7 @@ def fetch_results():
     cursor = conn.cursor()
 
     # Fetch the result from the DBT model
-    cursor.execute("SELECT * FROM my_model")  # The DBT model creates a view `my_model`
+    cursor.execute("SELECT * FROM customer_transaction_report")  # The DBT model creates a view `customer_transaction_report`
     rows = cursor.fetchall()
 
     print("DBT Model Results:")
