@@ -11,9 +11,9 @@ reviews:
   auto_review:
     enabled: true
     drafts: false
-    path_instructions:
-      - path: "*"
-      instructions: |
+  path_instructions:
+    - path: "*"
+    instructions: |
         Oftentimes there are complex final models that use many joins to one table (one table is joined into the same query multiple times). Make sure this is only done when absolutely necessary and ideally rework to only join onto each table once.
         Oftentimes there are complex final models using cartesian joins (like joining on ranges, using condition 1=1 for joining to every row, or CROSS JOIN) onto wh_date_detail (or a CTE of wh_date_detail) multiple times. This is not optimal and can typically be reworked.
         Look for CTE/subqueries that have been separated only for iterative calculations of one column. Sometimes this is necessary but many times can be reduced to one line/query.
