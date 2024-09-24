@@ -11,10 +11,14 @@ reviews:
   auto_review:
     enabled: true
     drafts: false
-  instructions: |
-    Oftentimes there are complex final models that use many joins to one table (one table is joined into the same query multiple times). Make sure this is only done when absolutely necessary and ideally rework to only join onto each table once.
-    Oftentimes there are complex final models using cartesian joins (like joining on ranges, using condition 1=1 for joining to every row, or CROSS JOIN) onto wh_date_detail (or a CTE of wh_date_detail) multiple times. This is not optimal and can typically be reworked.
-    Look for CTE/subqueries that have been separated only for iterative calculations of one column. Sometimes this is necessary but many times can be reduced to one line/query.
-    If creating a date spine from wh_date_detail, are there start and end date filters? Typically, it is not necessary to join on the entire table.
+    path_instructions:
+      - path: "*"
+      instructions: |
+        Oftentimes there are complex final models that use many joins to one table (one table is joined into the same query multiple times). Make sure this is only done when absolutely necessary and ideally rework to only join onto each table once.
+        Oftentimes there are complex final models using cartesian joins (like joining on ranges, using condition 1=1 for joining to every row, or CROSS JOIN) onto wh_date_detail (or a CTE of wh_date_detail) multiple times. This is not optimal and can typically be reworked.
+        Look for CTE/subqueries that have been separated only for iterative calculations of one column. Sometimes this is necessary but many times can be reduced to one line/query.
+        If creating a date spine from wh_date_detail, are there start and end date filters? Typically, it is not necessary to join on the entire table.
+        No ORDER BY’s should be used unless they are part of a window function.
+        Limit casting to INT, preferring casting to BIGINT if necessary ( look for CAST(my_column, INT) or INT(my_column) or my_column::INT). Don’t cast IDs to INT.
 chat:
   auto_reply: true
