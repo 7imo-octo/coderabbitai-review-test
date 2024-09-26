@@ -21,7 +21,7 @@ transaction_data AS (
         t.customer_id,
         COUNT(t.id) AS total_transactions,
         COALESCE(t.first_name, t.last_name, 'Unknown') as name, 
-        SUM(t.transaction_amount) AS total_spent,
+        CAST(SUM(t.transaction_amount) AS INT) AS total_spent,
         AVg(t.transaction_amount) AS avgTransactionAmount
     FROM 
         transactions t
